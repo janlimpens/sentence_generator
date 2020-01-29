@@ -4,12 +4,43 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-        
         {
             "type": "lldb",
             "request": "launch",
-            "name": "Debug",
-            "program": "${workspaceFolder}/<your program>",
+            "name": "Debug executable 'sentence_generator'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=sentence_generator",
+                    "--package=sentence_generator"
+                ],
+                "filter": {
+                    "name": "sentence_generator",
+                    "kind": "bin"
+                }
+            },
+            "args": [
+                "Es war einmal ein Mann, der hatte einen Schwan, der Schwan war ihm zu groß, da legt er sich ins Moos.",
+                "-n 4"
+            ],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in executable 'sentence_generator'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--bin=sentence_generator",
+                    "--package=sentence_generator"
+                ],
+                "filter": {
+                    "name": "sentence_generator",
+                    "kind": "bin"
+                }
+            },
             "args": [],
             "cwd": "${workspaceFolder}"
         }

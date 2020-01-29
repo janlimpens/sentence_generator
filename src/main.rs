@@ -1,13 +1,31 @@
 use rand::{thread_rng, Rng};
+extern crate clap;
+use clap::{Arg, App};
 
 fn main() {
-    // get them by args    
-    let mut number_of_words: u32 = 3;
-    let mut words = String::new();
-    words = "a b c d e f g h i j k l m n o p q r s t u v w x y z".to_string();
-    
+    let matches = App::new("Sentence generator")
+    .version("1.0")
+    .author("jan@limpens.com")
+    .about("Gives you a selection of words from a given word list.")
+    .arg(Arg::with_name("INPUT")
+         .help("Sets the word list to use")
+         .required(true)
+         .index(1))
+    .arg(Arg::with_name("number")
+         .short("n")
+         .long("number")
+         .default_value("3")
+         .help("Sets how many words are returned"))
+    .get_matches();
+
+    let words = matches.value_of("INPUT").unwrap();
+    let number_of_words = matches.value_of("number").unwrap();
+    let mut number_of_words:u32 = number_of_words.parse().unwrap();
+
     let word_iter = words.split_whitespace();
-    let vec: Vec<&str> = word_iter.collect();
+    let mut vec: Vec<&str> = word_iter.collect();
+    vec.sort();
+    vec.dedup();
     let words_size: usize = vec.len();
 
     let mut result = Vec::new();
