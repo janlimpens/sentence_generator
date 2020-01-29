@@ -20,7 +20,7 @@
                 }
             },
             "args": [
-                "Es war einmal ein Mann, der hatte einen Schwan, der Schwan war ihm zu groß, da legt er sich ins Moos.",
+                "-w \"Es war einmal ein Mann, der hatte einen Schwan, der Schwan war ihm zu groß, da legt er sich ins Moos.\"",
                 "-n 4"
             ],
             "cwd": "${workspaceFolder}"
